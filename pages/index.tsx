@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { IData } from "../interfaces/interfaces";
 import { Header } from "../components/Header/Header";
-import { ButtonsArea } from "../components/ButtonsArea/ButtonsArea";
+import { ButtonsFilterArea } from "../components/ButtonsFilterArea/ButtonsFilterArea";
 
 export default function Home() {
   const [data, setData] = useState<IData[]>();
@@ -40,24 +40,13 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <ButtonsArea>
-        <p>Página: {page}</p>
-        <button disabled={page === 1} onClick={() => setPage(page - 1)}>
-          &lt; Página anterior
-        </button>
-        <button
-          disabled={dataFiltered && dataFiltered.length < 100}
-          onClick={() => setPage(page + 1)}
-        >
-          Próxima Página &gt;
-        </button>
-      </ButtonsArea>
-      <div>
-        <label>
-          Filtro
-          <input onChange={(e: any) => setFilter(e.target.value)} />
-        </label>
-      </div>
+      <ButtonsFilterArea
+        page={page}
+        setPage={setPage}
+        dataFiltered={dataFiltered}
+        setFilter={setFilter}
+      />
+
       <div>
         {dataFiltered && dataFiltered.length > 1 ? (
           dataFiltered.map((item: any) => <div>{item.name}</div>)
