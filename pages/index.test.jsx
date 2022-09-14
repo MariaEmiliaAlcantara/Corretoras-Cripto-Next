@@ -24,7 +24,7 @@ describe("General Page Test", () => {
 
   test("it should filter correctly", () => {
     render(<Home />);
-    const filter = screen.getByLabelText(/filter/i);
+    const filter = screen.getByLabelText(/filtro/i);
     fireEvent.change(filter, { target: { value: "binance" } });
 
     screen.findByText("binance");
