@@ -27,7 +27,6 @@ export default function Home() {
       .then((data) => setData(data));
   }, [page]);
 
-  console.log(filter);
   useEffect(() => {
     if (data) {
       setDataFiltered(
@@ -51,7 +50,7 @@ export default function Home() {
       />
       <CardArea>
         {dataFiltered && dataFiltered.length > 1 ? (
-          dataFiltered.map((item: any) => <Card data={item} />)
+          dataFiltered.map((item: any) => <Card key={item.id} data={item} />)
         ) : (
           <div>Não foram encontrados resultados nesta página</div>
         )}

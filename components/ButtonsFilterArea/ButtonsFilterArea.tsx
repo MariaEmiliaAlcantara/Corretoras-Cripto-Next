@@ -54,6 +54,7 @@ export const ButtonsFilterArea = ({
         </Button>
         {buttonsNumber.map((button) => (
           <Button
+            key={button}
             className={page === button ? "selected" : ""}
             onClick={() => setPage(button)}
           >
