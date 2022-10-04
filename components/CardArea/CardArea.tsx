@@ -3,11 +3,21 @@ import styled from "styled-components";
 
 const WrapperCards = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 15px;
+`;
+
+const End = styled.div`
+  height: 100px;
 `;
 
 export const CardArea = ({ children }) => {
-  return <WrapperCards>{children}</WrapperCards>;
+  return (
+    <>
+      <WrapperCards> {children}</WrapperCards>
+      <End />
+    </>
+  );
 };

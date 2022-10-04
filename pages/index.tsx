@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 
 import { IData } from "../interfaces/interfaces";
 import { Header } from "../components/Header/Header";
-import { ButtonsFilterArea } from "../components/ButtonsFilterArea/ButtonsFilterArea";
+import { FilterArea } from "../components/FilterArea/FilterArea";
 import Card from "../components/Card/Card";
 import { CardArea } from "../components/CardArea/CardArea";
+import { Footer } from "../components/Footer/Footer";
 
 export default function Home() {
   const [data, setData] = useState<IData[]>();
@@ -41,13 +41,8 @@ export default function Home() {
 
   return (
     <div>
-      <Header />
-      <ButtonsFilterArea
-        page={page}
-        setPage={setPage}
-        dataFiltered={dataFiltered}
-        setFilter={setFilter}
-      />
+      <Header setPage={setPage} />
+      <FilterArea setFilter={setFilter} />
       <CardArea>
         {dataFiltered && dataFiltered.length > 1 ? (
           dataFiltered.map((item: any) => <Card key={item.id} data={item} />)
@@ -55,6 +50,7 @@ export default function Home() {
           <div>Não foram encontrados resultados nesta página</div>
         )}
       </CardArea>
+      <Footer page={page} setPage={setPage} dataFiltered={dataFiltered} />
     </div>
   );
 }
