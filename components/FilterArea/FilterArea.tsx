@@ -43,7 +43,7 @@ export const FilterArea = ({ setFilter }) => {
         <LabelFilter>
           Nome:
           <InputFilter
-            placeholder="digite o nome da criptomoeda"
+            placeholder="digite o nome da corretora"
             onChange={(e: any) => setFilter(e.target.value)}
           />
         </LabelFilter>

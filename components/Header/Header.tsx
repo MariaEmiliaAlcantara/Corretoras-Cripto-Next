@@ -83,12 +83,12 @@ export const Header = ({ setPage }) => {
         </SocialDiv>
       </HeaderTop>
       <RegularDiv>
-        <HeaderTitle>Criptomoedas Populares</HeaderTitle>
+        <HeaderTitle>Corretoras de Criptomoedas Populares</HeaderTitle>
       </RegularDiv>
       <RegularDiv>
         <HeaderText>
           Encontre aqui uma base de dados completa sobre as principais
-          criptomoedas do mundo
+          corretoras de criptomoedas do mundo
         </HeaderText>
       </RegularDiv>
     </>
