@@ -83,7 +83,7 @@ export const Header = ({ setPage }) => {
         </SocialDiv>
       </HeaderTop>
       <RegularDiv>
-        <HeaderTitle>Corretoras de Criptomoedas Populares</HeaderTitle>
+        <HeaderTitle>Corretoras de Criptomoedas</HeaderTitle>
       </RegularDiv>
       <RegularDiv>
         <HeaderText>
