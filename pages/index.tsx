@@ -1,43 +1,37 @@
 import { useEffect, useState } from "react";
-
 import { IData } from "../interfaces/interfaces";
 import { Header } from "../components/Header/Header";
 import { FilterArea } from "../components/FilterArea/FilterArea";
 import Card from "../components/Card/Card";
 import { CardArea } from "../components/CardArea/CardArea";
 import { Footer } from "../components/Footer/Footer";
+import useSWR from "swr";
+
+function SWR(page) {
+  const address = `https://api.coingecko.com/api/v3/exchanges?per_page=100&page=${page}`;
+  const fetcher = async (url) => await fetch(url).then((res) => res.json());
+  const { data } = useSWR(address, fetcher, { refreshInterval: 5000 });
+  return data;
+}
 
 export default function Home() {
-  const [data, setData] = useState<IData[]>();
   const [dataFiltered, setDataFiltered] = useState<IData[]>();
   const [filter, setFilter] = useState("");
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    fetch("https://api.coingecko.com/api/v3/exchanges?per_page=100&page=1")
-      .then((resp) => resp.json())
-      .then((data) => setData(data));
-  }, []);
+  let dataSWR: IData[] = SWR(page);
 
   useEffect(() => {
-    fetch(
-      `https://api.coingecko.com/api/v3/exchanges?per_page=100&page=${page}`
-    )
-      .then((resp) => resp.json())
-      .then((data) => setData(data));
-  }, [page]);
-
-  useEffect(() => {
-    if (data) {
+    if (dataSWR) {
       setDataFiltered(
-        data.filter((item) =>
+        dataSWR.filter((item) =>
           item.name.toLowerCase().includes(filter.toLowerCase())
         )
       );
     } else {
       setDataFiltered([]);
     }
-  }, [data, filter]);
+  }, [dataSWR, filter]);
 
   return (
     <div>
